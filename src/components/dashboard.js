@@ -8,6 +8,7 @@
             this.state = {
                 check: true,
                 location: "Kishoreganj, Dhaka",
+                country: "Bangladesh",
                 coordinates: "--",
                 temperature: "--",
                 wind: "--",
@@ -32,6 +33,7 @@
             console.log("Temp" + data["main"]["temp"])
             this.setState({temperature: parseInt(data["main"]["temp"]) - 273})
             this.setState({location: data["name"]})
+            this.setState({country: data["sys"]["country"]})
             this.setState({coordinates: data["coord"]["lat"] + "°, " + data["coord"]["lon"] + "°"})
             this.setState({wind: data["wind"]["deg"] + "°, " + data["wind"]["speed"] + " mps"})
             this.setState({humidity: data["main"]["humidity"] + "%"})
@@ -66,6 +68,7 @@
                     <Overview data={{
                         temp: this.state.temperature,
                         location: this.state.location,
+                        country: this.state.country,
                         humidity: this.state.humidity,
                         coordinates: this.state.coordinates,
                         sunrise: this.state.sunrise,

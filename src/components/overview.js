@@ -30,25 +30,25 @@ class Overview extends Component {
                                 <h1 className="capitalize">{this.props.data.temp} °C, {this.props.data.description}</h1>
                             </div>
                             <div className="col-12 text-center">
-                                <h3>{this.props.data.location}</h3>
+                                <h3>{this.props.data.location}, {this.props.data.country}</h3>
                             </div>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 d-flex justify-content-center">
                         <dl className="row p-3">
-                                <dt className="col-6">Area</dt>
+                                <dt className="col-6"><i className="fa fa-globe"></i> Area</dt>
                                 <dd className="col-6">{this.props.data.location}</dd>
-                                <dt className="col-6">Coordinates</dt>
+                                <dt className="col-6"><i className="fa fa-compass"></i> Coordinates</dt>
                                 <dd className="col-6">{this.props.data.coordinates}</dd>
-                                <dt className="col-6">Temperature</dt>
+                                <dt className="col-6"><i className="fas fa-thermometer-half"></i> Temperature</dt>
                                 <dd className="col-6">{this.props.data.temp}</dd>
-                                <dt className="col-6">Wind</dt>
+                                <dt className="col-6"><i className="fas fa-wind"></i> Wind</dt>
                                 <dd className="col-6">{this.props.data.wind}</dd>
-                                <dt className="col-6">Humidity</dt>
+                                <dt className="col-6"><i className="fas fa-tint"></i> Humidity</dt>
                                 <dd className="col-6">{this.props.data.humidity}</dd>
-                                <dt className="col-6">Sunrise</dt>
+                                <dt className="col-6"><i className="fas fa-sun"></i> Sunrise</dt>
                                 <dd className="col-6">{this.timestampConverter(this.props.data.sunrise)}</dd>
-                                <dt className="col-6">Sunset</dt>
+                                <dt className="col-6"><i className="fas fa-moon"></i> Sunset</dt>
                                 <dd className="col-6">{this.timestampConverter(this.props.data.sunset)}</dd>
                         </dl>
                     </div>
