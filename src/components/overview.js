@@ -27,7 +27,7 @@ class Overview extends Component {
                                 </div>
                             </div>
                             <div className="col-12 text-center">
-                                <h1>{this.props.data.temp} °C, {this.props.data.description}</h1>
+                                <h1 className="capitalize">{this.props.data.temp} °C, {this.props.data.description}</h1>
                             </div>
                             <div className="col-12 text-center">
                                 <h3>{this.props.data.location}</h3>

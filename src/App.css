@@ -10,8 +10,8 @@
   color: white;
 }
 
-.input-div {
-
+.capitalize {
+  text-transform: capitalize;
 }
 
 input[type="text"], input[type="text"]:focus {
