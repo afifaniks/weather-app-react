@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Media, Card, CardBody, CardHeader } from 'reactstrap';
+import { Media } from 'reactstrap';
 class Overview extends Component {
     timestampConverter(time) {
         var date = new Date(time * 1000);
@@ -13,7 +13,6 @@ class Overview extends Component {
         return formattedTime;
     }
     render () {
-        console.log(this.props.data.icon)
         return (
             <div className="container">
                 <div className="row">

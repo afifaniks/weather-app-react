@@ -1,15 +1,14 @@
 import React from 'react';
-import Weather from './weather';
 import { MyNav } from './components/navbar';
-import Dashboard from './components/dashboard';
-import './App.css';
+import Dashboard from './components/dashboard'; 
+import { Footer } from './components/footer';
 
 function App() {
   return (
     <div className="App">
       <MyNav />
       <Dashboard />
-      <Weather />
+      <Footer />
     </div>
   );
 }

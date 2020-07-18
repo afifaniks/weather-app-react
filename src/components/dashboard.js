@@ -1,13 +1,14 @@
     import React, { Component } from 'react';
-    import { Jumbotron, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+    import { Jumbotron, FormGroup, Input, Button } from 'reactstrap';
     import Overview from './overview';
+import Forecast from './forecast';
     class Dashboard extends Component {
         constructor (props) {
             super(props);
             
             this.state = {
                 check: true,
-                location: "Kishoreganj, Dhaka",
+                location: "Kishoreganj,BD",
                 country: "Bangladesh",
                 coordinates: "--",
                 temperature: "--",
@@ -33,7 +34,6 @@
             const entry = this.state.searchBar;
 
             if (reg.exec(entry)) {
-                console.log("Enter" + entry)
                 this.getLocationData(entry, true)
             } else {
                 this.getLocationData(entry, false);
@@ -73,20 +73,19 @@
 
         getLocationData(location, isCoord) {
             var API_URL = "";
-
+            const API_KEY = "96990c5c335abd806ce9733346bb487c"
             if (isCoord) {
                 location = location.split(",");
-                API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=" + location[0].trim() +"&lon="+ location[1].trim() +"&appid=96990c5c335abd806ce9733346bb487c";
+                API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=" + location[0].trim() +"&lon="+ location[1].trim() +"&appid=" + API_KEY;
             } else {
-                API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=96990c5c335abd806ce9733346bb487c';
+                API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + API_KEY;
             }
             
             fetch(API_URL)
             .then(response => response.json())
             .then(data => {
                 // Checking if area exists
-                if (data["cod"] == 200)
-                console.log(data);
+                if (data["cod"] === 200)
                     this.setWeatherData(data);
             });
         }
@@ -97,58 +96,59 @@
                 this.setState({check: false});
             }
             return (
-                <Jumbotron style={{backgroundColor: '#9575cd'}}>
-                    <Overview data={{
-                        temp: this.state.temperature,
-                        location: this.state.location,
-                        country: this.state.country,
-                        humidity: this.state.humidity,
-                        coordinates: this.state.coordinates,
-                        sunrise: this.state.sunrise,
-                        sunset: this.state.sunset,
-                        wind: this.state.wind,
-                        description: this.state.description,
-                        icon: this.state.icon                       
-                    }}/> 
-                    
-                    <div className="col-12 col-md-6 offset-md-3 mt-4">
-                        <div className="row">
-                            <FormGroup className="col-9">
-                                <Input type="text"
-                                    id="location"
-                                    name="location" 
-                                    placeholder="Input area name or coordinates"
-                                    value={this.state.searchBar}
-                                    onChange={this.onInputChange} />                            
-                            </FormGroup>
-                            <Button
-                                className="col-3 search-btn" 
-                                onClick={this.search}
-                                style={{color: "#000",                                       
-                                        backgroundColor: "#ffffff",
-                                        border: "none",
-                                        height: "54px",
-                                        borderRadius: "0px 30px 30px 0px"}}>
-                                    Search
-                            </Button>                          
-                        </div>
-                        <div className="row">
-                                <div className="col-12  d-flex justify-content-center">
-                                    <Button
-                                        onClick={this.getGeoLocation}
-                                        style={{color: "#000",  
-                                                backgroundColor: "#ffffff",
-                                                border: "none",
-                                                height: "54px",
-                                                borderRadius: "30px"}}>
-                                            <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Current Location
-                                    </Button>
-                                </div>
+                <>
+                    <Jumbotron style={{backgroundColor: '#9575cd'}}>
+                        <Overview data={{
+                            temp: this.state.temperature,
+                            location: this.state.location,
+                            country: this.state.country,
+                            humidity: this.state.humidity,
+                            coordinates: this.state.coordinates,
+                            sunrise: this.state.sunrise,
+                            sunset: this.state.sunset,
+                            wind: this.state.wind,
+                            description: this.state.description,
+                            icon: this.state.icon                       
+                        }}/> 
+                        
+                        <div className="col-12 col-md-6 offset-md-3 mt-4">
+                            <div className="row">
+                                <FormGroup className="col-9">
+                                    <Input type="text"
+                                        id="location"
+                                        name="location" 
+                                        placeholder="Input area name or coordinates"
+                                        value={this.state.searchBar}
+                                        onChange={this.onInputChange} />                            
+                                </FormGroup>
+                                <Button
+                                    className="col-3 search-btn" 
+                                    onClick={this.search}
+                                    style={{color: "#000",                                       
+                                            backgroundColor: "#ffffff",
+                                            border: "none",
+                                            height: "54px",
+                                            borderRadius: "0px 30px 30px 0px"}}>
+                                        Search
+                                </Button>                          
                             </div>
-                    </div>
-                 
-                </Jumbotron>
-                
+                            <div className="row">
+                                    <div className="col-12  d-flex justify-content-center">
+                                        <Button
+                                            onClick={this.getGeoLocation}
+                                            style={{color: "#000",  
+                                                    backgroundColor: "#ffffff",
+                                                    border: "none",
+                                                    height: "54px",
+                                                    borderRadius: "30px"}}>
+                                                <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Current Location
+                                        </Button>
+                                    </div>
+                                </div>
+                        </div>
+                    </Jumbotron>
+                    <Forecast location={this.state.location} />
+                </>
             )
         }
     }

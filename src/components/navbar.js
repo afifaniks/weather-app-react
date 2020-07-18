@@ -6,8 +6,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  NavbarText
+  NavLink
 } from 'reactstrap';
 
 export const MyNav = (props) => {
@@ -23,7 +22,10 @@ export const MyNav = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="#">About</NavLink>
+              <NavLink href="https://github.com/afifaniks/weather-app-react">Source Code</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://afifaniks.me">Dev</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
