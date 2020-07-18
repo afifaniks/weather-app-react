@@ -16,7 +16,7 @@ class Overview extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-md-6 mt-4">
                         <div  className="row">
                             <div className="col-12">
                                 <div className="col-6 offset-3 d-flex justify-content-center">
@@ -34,23 +34,25 @@ class Overview extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 d-flex justify-content-center">
-                        <dl className="row p-3">
-                                <dt className="col-6"><i className="fa fa-globe"></i> Area</dt>
-                                <dd className="col-6">{this.props.data.location}</dd>
-                                <dt className="col-6"><i className="fa fa-compass"></i> Coordinates</dt>
-                                <dd className="col-6">{this.props.data.coordinates}</dd>
-                                <dt className="col-6"><i className="fas fa-thermometer-half"></i> Temperature</dt>
-                                <dd className="col-6">{this.props.data.temp} °C / {(this.props.data.temp * 1.8 + 32).toFixed(1)} °F</dd>
-                                <dt className="col-6"><i className="fas fa-wind"></i> Wind</dt>
-                                <dd className="col-6">{this.props.data.wind}</dd>
-                                <dt className="col-6"><i className="fas fa-tint"></i> Humidity</dt>
-                                <dd className="col-6">{this.props.data.humidity}</dd>
-                                <dt className="col-6"><i className="fas fa-sun"></i> Sunrise</dt>
-                                <dd className="col-6">{this.timestampConverter(this.props.data.sunrise)}</dd>
-                                <dt className="col-6"><i className="fas fa-moon"></i> Sunset</dt>
-                                <dd className="col-6">{this.timestampConverter(this.props.data.sunset)}</dd>
-                        </dl>
+                    <div className="col-12 col-md-6 mt-4">
+                        <div className="col-10 offset-1">
+                            <dl className="row">
+                                    <dt className="col-6 text-left"><i className="fa fa-globe"></i> Area</dt>
+                                    <dd className="col-6 text-right">{this.props.data.location}</dd>
+                                    <dt className="col-6 text-left"><i className="fa fa-compass"></i> Coordinates</dt>
+                                    <dd className="col-6 text-right">{this.props.data.coordinates}</dd>
+                                    <dt className="col-6 text-left"><i className="fas fa-thermometer-half"></i> Temperature</dt>
+                                    <dd className="col-6 text-right">{this.props.data.temp} °C / {(this.props.data.temp * 1.8 + 32).toFixed(1)} °F</dd>
+                                    <dt className="col-6 text-left"><i className="fas fa-wind"></i> Wind</dt>
+                                    <dd className="col-6 text-right">{this.props.data.wind}</dd>
+                                    <dt className="col-6 text-left"><i className="fas fa-tint"></i> Humidity</dt>
+                                    <dd className="col-6 text-right">{this.props.data.humidity}</dd>
+                                    <dt className="col-6 text-left"><i className="fas fa-sun"></i> Sunrise</dt>
+                                    <dd className="col-6 text-right">{this.timestampConverter(this.props.data.sunrise)}</dd>
+                                    <dt className="col-6 text-left"><i className="fas fa-moon"></i> Sunset</dt>
+                                    <dd className="col-6 text-right">{this.timestampConverter(this.props.data.sunset)}</dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>

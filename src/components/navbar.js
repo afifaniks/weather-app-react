@@ -17,7 +17,7 @@ export const MyNav = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/"><strong>V2 Weather</strong></NavbarBrand>
+        <NavbarBrand href="/" className="nav-brand"><strong>V2 Weather</strong></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>

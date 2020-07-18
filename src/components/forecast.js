@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
+// Async function to get 5days data
 async function callAPIAsync(location) {
     const API_KEY = "96990c5c335abd806ce9733346bb487c";
     const API_URL = "https://api.openweathermap.org/data/2.5/forecast?q=" + 
@@ -30,15 +31,14 @@ class Forecast extends Component {
     getForecast() {
         callAPIAsync(this.props.location).then(data => {
             // Checking if area exists
-            console.log(this.props.location)
             if (data["cod"] == 200) {
-                console.log(data);
                this.setState({data: data["list"]});
             }
         });
         
     }
 
+    // Unix timestamp to readable format
     timestampConverter(time) {
         var date = new Date(time * 1000);
         var hours = date.getHours();
@@ -52,8 +52,8 @@ class Forecast extends Component {
     }
 
     tableRow() {
+        // Only add <tr></tr> when API fetch completes
         if (this.state.data !== "") {
-            // console.log(Array.from(this.state.data))
             return this.state.data.map((row) => {
                 const date = row["dt_txt"].split(" ")[0];
                 const time = row["dt_txt"].split(" ")[1];
@@ -85,9 +85,11 @@ class Forecast extends Component {
     }
 
     render() {
+        // Check if previous location changed
         if (this.props.location !== this.state.location) {
             this.setState({location: this.props.location, reload: true});
         }
+        // Checking state variable to reload
         if (this.state.reload) {
             this.getForecast();
             this.setState({reload: false});

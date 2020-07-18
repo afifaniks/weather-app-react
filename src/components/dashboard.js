@@ -8,7 +8,7 @@ import Forecast from './forecast';
             
             this.state = {
                 check: true,
-                location: "Kishoreganj,BD",
+                location: "Dhaka,BD",
                 country: "Bangladesh",
                 coordinates: "--",
                 temperature: "--",
@@ -19,6 +19,8 @@ import Forecast from './forecast';
                 description: "--",
                 icon: "unknown",
                 searchBar: "",
+                currentLocation: "Get Current Location",
+                locatingCurrent: false
             }
 
             this.search = this.search.bind(this);
@@ -41,7 +43,12 @@ import Forecast from './forecast';
         }
 
         setWeatherData(data) {
-            // console.log("Temp" + data["main"]["temp"])
+            // Setting Current Location Switch Value
+            if (this.state.locatingCurrent) {
+                this.setState({locatingCurrent: false, currentLocation: data["name"] + ", " + data["sys"]["country"]});
+            } else {
+                this.setState({currentLocation: "Get Current Location"});
+            }
             this.setState({temperature: (parseFloat(data["main"]["temp"]) - 273.15).toFixed(1)})
             this.setState({location: data["name"]})
             this.setState({country: data["sys"]["country"]})
@@ -55,25 +62,30 @@ import Forecast from './forecast';
         }
 
         onInputChange (e) {
+            // Change state value on each keystroke
             this.setState({searchBar: e.target.value});
         }
 
         getGeoLocation() {
+            // Get latitude and longitude
             if (navigator.geolocation) {
-                 navigator.geolocation.getCurrentPosition(this.showPosition);
+                    navigator.geolocation.getCurrentPosition(this.showPosition);
+                    // Changing Current Location Status
+                    this.setState({locatingCurrent: true});
                 } else {
-                console.log("Geolocation is not supported by this browser.");
+                    console.log("Geolocation is not supported by this browser.");
                 }
         }
           
           showPosition(position) {
-              this.getLocationData(position["coords"]["latitude"] +","+position["coords"]["longitude"], true);
+            // Extract data by coordinates   
+            this.getLocationData(position["coords"]["latitude"] +","+position["coords"]["longitude"], true);
           }
           
 
         getLocationData(location, isCoord) {
             var API_URL = "";
-            const API_KEY = "96990c5c335abd806ce9733346bb487c"
+            const API_KEY = "96990c5c335abd806ce9733346bb487c";
             if (isCoord) {
                 location = location.split(",");
                 API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=" + location[0].trim() +"&lon="+ location[1].trim() +"&appid=" + API_KEY;
@@ -81,23 +93,26 @@ import Forecast from './forecast';
                 API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + API_KEY;
             }
             
+            // Using fetch API to retrieve data
             fetch(API_URL)
             .then(response => response.json())
             .then(data => {
                 // Checking if area exists
-                if (data["cod"] === 200)
+                if (data["cod"] == 200)
                     this.setWeatherData(data);
             });
         }
 
         render() {
+            // Checking state value so that it can only
+            // execute once
             if (this.state.check) {
                 this.getLocationData(this.state.location);
                 this.setState({check: false});
             }
             return (
                 <>
-                    <Jumbotron style={{backgroundColor: '#9575cd'}}>
+                    <Jumbotron>
                         <Overview data={{
                             temp: this.state.temperature,
                             location: this.state.location,
@@ -141,7 +156,7 @@ import Forecast from './forecast';
                                                     border: "none",
                                                     height: "54px",
                                                     borderRadius: "30px"}}>
-                                                <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Current Location
+                                                <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;{this.state.currentLocation}
                                         </Button>
                                     </div>
                                 </div>

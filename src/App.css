@@ -1,13 +1,16 @@
 .jumbotron {
   padding:70px 30px 70px 30px;
   margin:0px auto;
-  background-color: #9575CD ;
+  border-radius: 25px 25px 0px 0px;
+  background: rgb(90,175,193);
+  background: linear-gradient(90deg, rgba(90,175,193,0.9416141456582633) 0%, rgba(83,98,181,0.9220063025210083) 100%);
   color:white;
 }
 
-.jumbo-dashboard {
-  background: aqua;
-  color: white;
+.nav-brand strong{
+  background: -webkit-linear-gradient(rgba(90,175,193,0.969625350140056), rgba(83,98,181,1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .capitalize {
@@ -25,7 +28,7 @@ input[type="text"], input[type="text"]:focus {
 }
 
 .download-table-xls-button {
-  background: #9575CD;
+  background: rgba(90,175,193);
   float: right;
   border-radius: 10px 10px 0px 0px;
   color: white;
@@ -35,13 +38,15 @@ input[type="text"], input[type="text"]:focus {
 }
 
 .download-table-xls-button:hover {
-  background: #4527a0;
+  background: rgba(83,98,181,1);
   transition: 0.4s;
 }
 
 .footer {
-  background: #9575CD;
+  background: rgb(90,175,193);
+  background: linear-gradient(90deg, rgba(90,175,193,0.9416141456582633) 0%, rgba(83,98,181,0.9220063025210083) 100%);
   text-align: center;
+  font-weight: light;
   color: white;
   margin: 0 auto;
 }
