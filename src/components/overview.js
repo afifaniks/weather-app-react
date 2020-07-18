@@ -35,13 +35,13 @@ class Overview extends Component {
                         </div>
                     </div>
                     <div className="col-12 col-md-6 mt-4">
-                        <div className="col-10 offset-1">
+                        <div className="col-12">
                             <dl className="row">
                                     <dt className="col-6 text-left"><i className="fa fa-globe"></i> Area</dt>
                                     <dd className="col-6 text-right">{this.props.data.location}</dd>
-                                    <dt className="col-6 text-left"><i className="fa fa-compass"></i> Coordinates</dt>
+                                    <dt className="col-6 text-left"><i className="fa fa-compass"></i> Coords.</dt>
                                     <dd className="col-6 text-right">{this.props.data.coordinates}</dd>
-                                    <dt className="col-6 text-left"><i className="fas fa-thermometer-half"></i> Temperature</dt>
+                                    <dt className="col-6 text-left"><i className="fas fa-thermometer-half"></i> Temp.</dt>
                                     <dd className="col-6 text-right">{this.props.data.temp} °C / {(this.props.data.temp * 1.8 + 32).toFixed(1)} °F</dd>
                                     <dt className="col-6 text-left"><i className="fas fa-wind"></i> Wind</dt>
                                     <dd className="col-6 text-right">{this.props.data.wind}</dd>

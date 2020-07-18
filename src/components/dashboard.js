@@ -147,7 +147,7 @@ import Forecast from './forecast';
                                         Search
                                 </Button>                          
                             </div>
-                            <div className="row">
+                            <div className="row mt-4">
                                     <div className="col-12  d-flex justify-content-center">
                                         <Button
                                             onClick={this.getGeoLocation}
