@@ -13,6 +13,7 @@ class Overview extends Component {
         return formattedTime;
     }
     render () {
+        console.log(this.props.data.icon)
         return (
             <div className="container">
                 <div className="row">
@@ -41,7 +42,7 @@ class Overview extends Component {
                                 <dt className="col-6"><i className="fa fa-compass"></i> Coordinates</dt>
                                 <dd className="col-6">{this.props.data.coordinates}</dd>
                                 <dt className="col-6"><i className="fas fa-thermometer-half"></i> Temperature</dt>
-                                <dd className="col-6">{this.props.data.temp}</dd>
+                                <dd className="col-6">{this.props.data.temp} °C / {(this.props.data.temp * 1.8 + 32).toFixed(1)} °F</dd>
                                 <dt className="col-6"><i className="fas fa-wind"></i> Wind</dt>
                                 <dd className="col-6">{this.props.data.wind}</dd>
                                 <dt className="col-6"><i className="fas fa-tint"></i> Humidity</dt>
